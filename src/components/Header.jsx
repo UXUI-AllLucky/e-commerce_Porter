@@ -1,137 +1,95 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Search, ShoppingBag, Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.scss';
+import logo from '../img/porter/porterlogo.png';
+
+const PlusIcon = ({ size }) => (
+    <svg
+        width={size}
+        height={size}
+        viewBox="0 0 17 17"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M8.5 0V17M0 8.5H17" stroke="#000000" strokeWidth="2" />
+    </svg>
+);
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [recentSearches, setRecentSearches] = useState([]);
-  const navigate = useNavigate();
+    const [isScrolled, setIsScrolled] = useState(false);
+    const location = useLocation();
+    const isMainPage = location.pathname === '/';
 
-  useEffect(() => {
-    const saved = localStorage.getItem('recentSearches');
-    if (saved) {
-      setRecentSearches(JSON.parse(saved));
-    }
-  }, []);
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
-  const handleSearchSubmit = (e) => {
-    if (e.key === 'Enter' && searchQuery.trim()) {
-      const newSearch = searchQuery.trim();
-      let updatedSearches = [newSearch, ...recentSearches.filter(s => s !== newSearch)].slice(0, 5);
-      
-      setRecentSearches(updatedSearches);
-      localStorage.setItem('recentSearches', JSON.stringify(updatedSearches));
-      
-      setIsSearchOpen(false);
-      setSearchQuery('');
-      navigate(`/product?q=${encodeURIComponent(newSearch)}`);
-    }
-  };
+    const isLargeHeader = isMainPage && !isScrolled;
 
-  const removeRecentSearch = (term) => {
-    const updated = recentSearches.filter(s => s !== term);
-    setRecentSearches(updated);
-    localStorage.setItem('recentSearches', JSON.stringify(updated));
-  };
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    if (!isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  };
-
-  return (
-    <>
-      <header className="header">
-        <div className="header__inner inner">
-          <div className="header__left">
-            <Link to="/" className="header__logo">PORTER</Link>
-          </div>
-          
-          <nav className="header__center">
-            <ul className="gnb">
-              <li><Link to="/product">PRODUCT <span>+</span></Link></li>
-              <li><Link to="/collab">COLLABORATION</Link></li>
-              <li><Link to="/about">ABOUT</Link></li>
-              <li><Link to="/offline">OFFLINE</Link></li>
-            </ul>
-          </nav>
-          
-          <div className="header__right">
-            <button className="util-btn" onClick={() => setIsSearchOpen(true)}>
-              <Search size={20} />
-            </button>
-            <Link to="/login" className="util-link desktop-only">LOGIN</Link>
-            <Link to="/cart" className="util-btn flex">
-              <ShoppingBag size={20} />
-              <span className="cart-badge">0</span>
+    return (
+        <header className={`header ${isLargeHeader ? 'large-header' : 'small-header'}`}>
+            {/* 로고 클릭 시 메인 이동 */}
+            <Link to="/" className="logo-area">
+                <img src={logo} alt="PORTER 로고" className="logo-img" />
             </Link>
-            <button className="util-btn mobile-only" onClick={toggleMenu}>
-              <Menu size={24} />
-            </button>
-          </div>
-        </div>
-      </header>
 
-      {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div className="mobile-menu">
-          <button className="mobile-menu__close" onClick={toggleMenu}>
-            <X size={28} />
-          </button>
-          <ul className="mobile-menu__list">
-            <li><Link to="/product" onClick={toggleMenu}>PRODUCT</Link></li>
-            <li><Link to="/collab" onClick={toggleMenu}>COLLABORATION</Link></li>
-            <li><Link to="/about" onClick={toggleMenu}>ABOUT</Link></li>
-            <li><Link to="/offline" onClick={toggleMenu}>OFFLINE</Link></li>
-            <li><Link to="/login" onClick={toggleMenu}>LOGIN / MY PAGE</Link></li>
-          </ul>
-        </div>
-      )}
+            <div className="content-area">
+                {isLargeHeader && (
+                    <p className="top-text">
+                        YOSHIDA,
+                        <br />
+                        POTER
+                        <br />
+                        STAND
+                        <br />
+                        YOSHIDA&
+                        <br />
+                        COMPANY
+                    </p>
+                )}
 
-      {/* Search Modal */}
-      {isSearchOpen && (
-        <div className="search-modal">
-          <div className="search-modal__close" onClick={() => setIsSearchOpen(false)}>
-            <X size={32} />
-          </div>
-          <div className="search-modal__content">
-            <input 
-              type="text" 
-              placeholder="SEARCH PRODUCTS..." 
-              className="search-modal__input" 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyDown={handleSearchSubmit}
-              autoFocus
-            />
-            {recentSearches.length > 0 && (
-              <div className="search-modal__recent">
-                <h3>RECENT SEARCHES</h3>
-                <div className="recent-list">
-                  {recentSearches.map((term, i) => (
-                    <div key={i} className="recent-item">
-                      <span onClick={() => {
-                        setIsSearchOpen(false);
-                        navigate(`/product?q=${encodeURIComponent(term)}`);
-                      }}>{term}</span>
-                      <button onClick={() => removeRecentSearch(term)}><X size={14} /></button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-    </>
-  );
+                <nav className="bottom-nav">
+                    <ul className="menu-group-1">
+                        <li className="has-icon">
+                            <Link to="/product">
+                                PRODUCT <PlusIcon size={isLargeHeader ? 17 : 13} />
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/collab">COLLABORATION</Link>
+                        </li>
+                        <li>
+                            <Link to="/about">ABOUT</Link>
+                        </li>
+                        <li>
+                            <Link to="/offline">OFFLINE</Link>
+                        </li>
+                    </ul>
+                    <ul className="menu-group-2">
+                        <li>
+                            <Link to="/product">SEARCH</Link>
+                        </li>
+                        <li>
+                            <Link to="/login">MYPAGE</Link>
+                        </li>
+                        <li className="has-icon">
+                            <Link to="/cart">
+                                CART <PlusIcon size={isLargeHeader ? 17 : 13} />
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    );
 };
 
 export default Header;

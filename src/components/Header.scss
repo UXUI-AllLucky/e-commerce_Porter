@@ -2,251 +2,174 @@
 @use '../styles/mixins' as *;
 
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid $gray-200;
-  z-index: 1000;
-
-  &__inner {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  &__logo {
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    color: $black;
-  }
-
-  &__center {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-
-    @include tablet {
-      display: none;
-    }
-  }
-
-  &__right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-}
-
-.gnb {
-  display: flex;
-  gap: 32px;
-
-  li {
-    a {
-      font-size: 14px;
-      font-weight: 600;
-      color: $black;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-
-      span {
-        font-weight: 400;
-      }
-
-      &:hover {
-        color: $gray-500;
-      }
-    }
-  }
-}
-
-.util-btn {
-  display: flex;
-  align-items: center;
-  color: $black;
-
-  &.flex {
-    position: relative;
-    gap: 4px;
-  }
-
-  &:hover {
-    color: $gray-500;
-  }
-}
-
-.util-link {
-  font-size: 13px;
-  font-weight: 600;
-  color: $black;
-  text-transform: uppercase;
-
-  &:hover {
-    color: $gray-500;
-  }
-}
-
-.cart-badge {
-  background: $black;
-  color: $white;
-  font-size: 10px;
-  font-weight: 700;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: -6px;
-  right: -8px;
-}
-
-.desktop-only {
-  @include tablet {
-    display: none !important;
-  }
-}
-
-.mobile-only {
-  display: none !important;
-
-  @include tablet {
-    display: flex !important;
-  }
-}
-
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: $white;
-  z-index: 2000;
-  padding: 80px 24px;
-
-  &__close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: $black;
-  }
-
-  &__list {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-
-    li {
-      a {
-        font-size: 24px;
-        font-weight: 700;
-        color: $black;
-        text-transform: uppercase;
-      }
-    }
-  }
-}
-
-.search-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &__close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-  }
-
-  &__content {
-    width: 90%;
-    max-width: 800px;
-  }
-
-  &__input {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    font-size: 40px;
-    font-weight: 700;
-    color: $black;
-    border: none;
-    border-bottom: 2px solid $black;
-    padding: 16px 0;
-    background: transparent;
-    text-transform: uppercase;
-    outline: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    transition: all 0.6s ease;
+    z-index: 1000;
 
-    &::placeholder {
-      color: $gray-300;
-    }
-
-    @include mobile {
-      font-size: 24px;
-    }
-  }
-
-  &__recent {
-    margin-top: 40px;
-    
-    h3 {
-      font-size: 13px;
-      font-weight: 700;
-      color: $gray-500;
-      margin-bottom: 16px;
-      letter-spacing: 1px;
-    }
-
-    .recent-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .recent-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      background: $gray-100;
-      border-radius: 20px;
-      font-size: 14px;
-      color: $black;
-
-      span {
-        cursor: pointer;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-
-      button {
-        color: $gray-400;
+    // 링크 기본 스타일 제거 및 텍스트 컬러 변수 연결
+    a {
+        text-decoration: none;
+        color: $black;
         display: flex;
         align-items: center;
-        &:hover {
-          color: $black;
-        }
-      }
     }
-  }
 }
 
+// --- 큰 헤더 상태 ---
+.large-header {
+    height: 160px;
+    padding: 0 60px;
+
+    .logo-area {
+        margin-right: 12px;
+    }
+    .logo-img {
+        width: 240px;
+        height: 160px;
+        object-fit: contain;
+        transition: all 0.6s ease;
+    }
+
+    .content-area {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 160px;
+        flex: 1;
+    }
+
+    .top-text {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        color: $black;
+        text-transform: uppercase;
+        margin: 0;
+        line-height: 1;
+    }
+
+    .bottom-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        width: 100%;
+        padding-bottom: 2px;
+        gap: 50px;
+
+        ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            text-transform: uppercase;
+            cursor: pointer;
+            line-height: 1;
+            transition: all 0.6s ease;
+
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+
+        .has-icon a {
+            gap: 4px;
+        }
+
+        .menu-group-1 {
+            flex: 1;
+            gap: 216px;
+            max-width: 900px;
+            justify-content: space-between;
+        }
+
+        .menu-group-2 {
+            gap: 20px;
+            justify-content: flex-end;
+        }
+    }
+}
+
+// --- 작은 헤더 상태 ---
+.small-header {
+    height: 60px;
+    padding: 10px 60px;
+    justify-content: space-between;
+    background-color: rgba($white, 0.95); // 스크롤 시 배경색 적용
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid $gray-200;
+
+    .logo-area {
+        margin-right: auto;
+    }
+    .logo-img {
+        width: 60px;
+        height: 40px;
+        object-fit: contain;
+        transition: all 0.6s ease;
+    }
+
+    .content-area {
+        display: flex;
+        align-items: center;
+        width: 831px;
+    }
+
+    .bottom-nav {
+        display: flex;
+        width: 100%;
+        gap: 80px;
+        align-items: center;
+
+        ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            cursor: pointer;
+            line-height: 1;
+            transition: all 0.6s ease;
+
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+
+        .has-icon a {
+            gap: 4px;
+        }
+
+        .menu-group-1 {
+            width: 479px;
+            gap: 22px;
+            justify-content: space-between;
+        }
+
+        .menu-group-2 {
+            width: 272px;
+            gap: 22px;
+            justify-content: space-between;
+        }
+    }
+}
