@@ -1,13 +1,12 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import './Intro.scss';
 
 // Intro: und-ny.com 스타일 인트로 프리로더
 // 1단계: 올리브 배경 + "PORTER" 글자가 왼쪽 하단에서 한 글자씩 올라옴
 // 2단계: 1초 대기 후 프리로더 화면이 위로 이동하며 사라짐
-const Intro = ({ onFinish }) => {
+const Intro = () => {
     const blockRef = useRef(null);
-    const [visible, setVisible] = useState(true);
 
     // 인트로 프리로더 refs
     const preloaderRef = useRef(null);
@@ -60,14 +59,8 @@ const Intro = ({ onFinish }) => {
                     ease: 'power3.inOut',
                 },
                 '<'
-            ) // '<' = 이전 애니메이션과 동시 시작
-            .eventCallback('onComplete', () => {
-                setVisible(false);
-                if (onFinish) onFinish();
-            });
-    }, [onFinish]);
-
-    if (!visible) return null;
+            ); // '<' = 이전 애니메이션과 동시 시작
+    }, []);
 
     return (
         <div className="intro-preloader-wrap" ref={blockRef}>

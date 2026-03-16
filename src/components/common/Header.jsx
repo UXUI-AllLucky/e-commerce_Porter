@@ -10,8 +10,6 @@ const PlusIcon = ({ size }) => (
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-    const [isHidden, setIsHidden] = useState(false);
-    const lastScrollY = useRef(0);
     const location = useLocation();
     const isMainPage = location.pathname === '/';
 
@@ -19,22 +17,13 @@ const Header = () => {
         if (!isMainPage) return;
 
         const handleScroll = () => {
+            // .hero 요소의 실제 높이를 기준으로 전환
+            // 별도 sentinel 없이 히어로 섹션이 올라간 만큼만 체크
             const hero = document.querySelector('.hero');
             const threshold = hero ? hero.offsetHeight : 0;
             setIsScrolled(window.scrollY >= threshold);
-
-            const currentScrollY = window.scrollY;
-
-            if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-                setIsHidden(true);
-            } else {
-                setIsHidden(false);
-            }
-
-            lastScrollY.current = currentScrollY;
         };
 
-        handleScroll();
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isMainPage]);
@@ -45,10 +34,9 @@ const Header = () => {
     }, [isMainPage]);
 
     const isLargeHeader = isMainPage && !isScrolled;
-    const headerClass = isHidden ? 'hidden' : (isLargeHeader ? 'large-header' : 'small-header');
 
     return (
-        <header className={`header ${headerClass}`}>
+        <header className={`header ${isLargeHeader ? 'large-header' : 'small-header'}`}>
             <Link to="/" className="logo-area">
                 <img src="/images/porterlogo.png" alt="PORTER 로고" className="logo-img" />
             </Link>
