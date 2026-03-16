@@ -19,6 +19,7 @@ const Intro = () => {
     const introText = 'PORTER';
 
     useEffect(() => {
+        document.body.style.overflow = 'hidden';
         // ============================================================
         // 1단계: 프리로더 – "PORTER" 한 글자씩 아래→위로 등장
         // ============================================================
@@ -59,7 +60,10 @@ const Intro = () => {
                     ease: 'power3.inOut',
                 },
                 '<'
-            ); // '<' = 이전 애니메이션과 동시 시작
+            )
+            .then(() => {
+                document.body.style.overflow = '';
+            }); // '<' = 이전 애니메이션과 동시 시작
     }, []);
 
     return (
