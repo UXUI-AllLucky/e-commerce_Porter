@@ -118,7 +118,8 @@
 
 .menu-list {
     display: flex; // 가로 배치를 위해 추가
-    gap: 40px; // 간격 추가
+    flex-direction: column;
+    gap: 4px; // 간격 추가
 
     /* p 대신 a(Link) 스타일 추가 */
     a,
