@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import './Footer.scss';
 
 const Footer = () => {
-    // public/icons 등 외부 파일은 절대 경로로 접근
-    const imgPath = '/images';
-
     return (
         <footer className="footer-container Bk-Bk_solid">
             <div className="footer-top">
@@ -45,18 +42,14 @@ const Footer = () => {
                     <h2 className="Wh-Wh_50">PORTER</h2>
                     <div className="sub-menu logo-menu">
                         <Link to="/">
-                            <img
-                                src={`${imgPath}/porterlogo_w.png`}
-                                alt="PORTER"
-                                className="logo-1"
-                            />
+                            <img src={`/images/porterlogo_w.png`} alt="PORTER" className="logo-1" />
                         </Link>
                         <Link to="/">
-                            <img src={`${imgPath}/potrlogo_w.png`} alt="POTR" className="logo-2" />
+                            <img src={`/images/potrlogo_w.png`} alt="POTR" className="logo-2" />
                         </Link>
                         <Link to="/">
                             <img
-                                src={`${imgPath}/luggagelabellogo_w.png`}
+                                src={`/images/luggagelabellogo_w.png`}
                                 alt="LUGGAGE LABEL"
                                 className="logo-3"
                             />
@@ -87,7 +80,7 @@ const Footer = () => {
                 <div className="logo-box">
                     <Link to="/">
                         <img
-                            src={`${imgPath}/instagramlogo.png`}
+                            src={`/images/instagramlogo.png`}
                             alt="Instagram"
                             className="insta-logo Wh-Wh_90"
                         />

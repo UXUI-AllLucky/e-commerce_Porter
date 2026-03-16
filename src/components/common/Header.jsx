@@ -37,11 +37,7 @@ const Header = () => {
         <header className={`header ${isLargeHeader ? 'large-header' : 'small-header'}`}>
             {/* 로고 클릭 시 메인 이동 */}
             <Link to="/" className="logo-area">
-                <img
-                    src="/images/porterlogo.png"
-                    alt="PORTER 로고"
-                    className="logo-img"
-                />
+                <img src="/images/porterlogo.png" alt="PORTER 로고" className="logo-img" />
             </Link>
 
             <div className="content-area">
