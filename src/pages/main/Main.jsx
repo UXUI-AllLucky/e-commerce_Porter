@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import Header from '../components/common/Header';
-import HeroSection from '../components/main/HeroSection';
-import Intro from '../components/Intro';
+import Header from '../../components/common/Header';
+import HeroSection from '../../components/main/HeroSection';
+import Intro from '../../components/Intro';
 
-import BrandStory from '../components/main/Brandstory';
-import PotrSection from '../components/main/PotrSection';
+import BrandStory from '../../components/main/Brandstory';
+import PotrSection from '../../components/main/PotrSection';
 import './Main.scss';
+import PorterSection from '../../components/main/PorterSection';
 
 const Main = () => {
     // 새로고침 시 무조건 화면 맨 위에서 시작
@@ -25,6 +26,7 @@ const Main = () => {
             <Header />
             <main className="main">
                 <BrandStory />
+                <PorterSection />
                 <PotrSection />
             </main>
         </>

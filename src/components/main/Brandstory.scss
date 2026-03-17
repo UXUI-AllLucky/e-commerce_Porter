@@ -5,7 +5,7 @@ $font-stack: 'Roboto Condensed', 'Arial Narrow', Arial, sans-serif;
 .brand-story {
     display: flex;
     align-items: center;
-    padding: 80px 60px;
+    padding: 200px 60px;
     gap: 60px;
     background-color: #fff;
 }
@@ -13,6 +13,7 @@ $font-stack: 'Roboto Condensed', 'Arial Narrow', Arial, sans-serif;
 .brand-story__left {
     flex: 1;
     min-width: 0;
+    
 }
 
 .bs-viewport {
@@ -100,4 +101,21 @@ $font-stack: 'Roboto Condensed', 'Arial Narrow', Arial, sans-serif;
     letter-spacing: -0.02em;
     color: #000;
     margin: 0;
+}
+
+// 하단영역
+.bs__bottom-content {
+    padding: 0 72px 0 124px;
+    margin: 250px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .bs__bottom-left {
+        display: flex;
+        width: 460px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 404px;
+    }
 }

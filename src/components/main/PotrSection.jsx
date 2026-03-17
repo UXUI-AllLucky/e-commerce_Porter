@@ -2,10 +2,10 @@ import React, { useRef, useEffect } from 'react';
 import './PotrSection.scss';
 
 const productList = [
-  { id: 1, src: '/images/mainpotrimage2.png', width: 465, height: 376, boxClass: 'box-top-left' },
-  { id: 2, src: '/images/mainpotrimage3.png', width: 490, height: 447, boxClass: 'box-top-right' },
-  { id: 3, src: '/images/mainpotrimage4.png', width: 450, height: 450, boxClass: 'box-bot-left' },
-  { id: 4, src: '/images/mainpotrimage5.png', width: 497, height: 466, boxClass: 'box-bot-right' },
+  { id: 1, src: '/images/main/mainpotrimage2.png', width: 465, height: 376, boxClass: 'box-top-left' },
+  { id: 2, src: '/images/main/mainpotrimage3.png', width: 490, height: 447, boxClass: 'box-top-right' },
+  { id: 3, src: '/images/main/mainpotrimage4.png', width: 450, height: 450, boxClass: 'box-bot-left' },
+  { id: 4, src: '/images/main/mainpotrimage5.png', width: 497, height: 466, boxClass: 'box-bot-right' },
 ];
 
 const PotrSection = () => {
@@ -49,25 +49,25 @@ const PotrSection = () => {
       </div>
 
       <div className="potr-content">
-        
+
         {/* 상단 영역 */}
         <div className="top-content">
           <div className="top-left">
-            <img src="/images/mainpotrimage1.png" alt="Main" width="930" height="779" />
+            <img src="/images/main/mainpotrimage1.png" alt="Main" width="930" height="779" />
           </div>
           <div className="top-right">
             <div className="video-wrapper">
-              <video 
+              <video
                 ref={videoRef}
-                src="/videos/mainanimation1.mp4" 
-                muted 
-                loop 
+                src="/videos/mainanimation1.mp4"
+                muted
+                loop
                 playsInline
               ></video>
             </div>
-            
+
             <div className="potr-info">
-              <img src="/images/mainpotrtxt1.png" alt="P.O.T.R." width="394" height="160" className="logo-img" />
+              <img src="/images/main/mainpotrtxt1.png" alt="P.O.T.R." width="394" height="160" className="logo-img" />
               <div className="text-group">
                 <h3 className="subtitle">현대적 삶의 궤적을 함께하는 라이프스타일</h3>
                 <p className="body-text">
@@ -104,11 +104,11 @@ const PotrSection = () => {
         {/* 하단 영역 */}
         <div className="bottom-content">
           <div className="bottom-left">
-            <img src="/images/mainpotrimage6.png" alt="Force" width="452" height="300" />
-            <img src="/images/mainlltxt1.png" alt="LUGGAGE LABEL" width="240" height="45" className="ll-logo" />
+            <img src="/images/main/mainpotrimage6.png" alt="Force" width="452" height="300" />
+            <img src="/images/main/mainlltxt1.png" alt="LUGGAGE LABEL" width="240" height="45" className="ll-logo" />
           </div>
           <div className="bottom-right">
-            <img src="/images/mainpotrimage7.png" alt="Right Bottom" width="1060" height="680" />
+            <img src="/images/main/mainpotrimage7.png" alt="Right Bottom" width="1060" height="680" />
           </div>
         </div>
 

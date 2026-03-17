@@ -1,0 +1,173 @@
+$bg-color: #ede58c;
+$text-color: #838e4f;
+$container-width: 1920px;
+$side-margin: 60px;
+
+.porter-section {
+    background-color: $bg-color;
+    width: 100%;
+    overflow-x: hidden;
+    color: $text-color;
+
+    .porter-container {
+        max-width: $container-width;
+        margin: 0 auto;
+        padding: 100px $side-margin 200px;
+        box-sizing: border-box;
+    }
+
+    // --- 상단 영역 ---
+    .header-content {
+        margin-bottom: 200px;
+
+        .media-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 60px;
+
+            .gif-box {
+                width: 250px;
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+            .video-box {
+                width: calc(100% - 350px);
+                max-width: 1100px;
+                video {
+                    width: 100%;
+                    display: block;
+                }
+            }
+        }
+
+        .brand-intro {
+            .brand-logo {
+                font-size: 10rem;
+                font-weight: 800;
+                letter-spacing: -4px;
+                margin: 0 0 30px 0;
+                line-height: 0.9;
+            }
+            .brand-text {
+                .main-desc {
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin-bottom: 15px;
+                }
+                .sub-desc {
+                    font-size: 1.1rem;
+                    line-height: 1.8;
+                    opacity: 0.9;
+                }
+            }
+        }
+    }
+
+    // --- 스티키 영역 ---
+    .sticky-wrapper {
+        display: flex;
+        position: relative;
+        min-height: 2000px; // 스크롤 길이를 확보
+
+        .sticky-text-area {
+            width: 50%;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+
+            .sticky-inner {
+                .display-text {
+                    font-size: 5.5rem;
+                    line-height: 1.1;
+                    font-weight: 300;
+                    margin-bottom: 20px;
+                    .highlight {
+                        font-weight: 700;
+                    }
+                }
+                .caption {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+
+        .product-list-grid {
+            width: 50%;
+            padding-top: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 300px; // 카드 간의 수직 간격
+
+            .product-card {
+                width: 100%;
+                display: flex;
+
+                &.box-top-left,
+                &.box-bot-left {
+                    justify-content: flex-start;
+                }
+                &.box-top-right,
+                &.box-bot-right {
+                    justify-content: flex-end;
+                }
+
+                .img-bg {
+                    background-color: rgba(131, 142, 79, 0.1);
+                    padding: 60px;
+                    width: 80%;
+                    aspect-ratio: 1 / 1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        max-width: 100%;
+                        height: auto;
+                        object-fit: contain;
+                    }
+                }
+            }
+        }
+    }
+
+    // --- 하단 영역 ---
+    .footer-visual {
+        margin-top: 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .lifestyle-image {
+            width: 55%;
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .illust-section {
+            width: 35%;
+            text-align: right;
+
+            .illust-image {
+                margin-bottom: 100px;
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            .bottom-label {
+                font-size: 2.5rem;
+                font-weight: 900;
+                color: #000;
+                letter-spacing: 2px;
+            }
+        }
+    }
+}
