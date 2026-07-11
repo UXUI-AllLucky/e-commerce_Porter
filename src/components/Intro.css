@@ -1,20 +1,17 @@
-@use '../styles/variables' as *;
+@charset "UTF-8";
 /* ===== Intro 프리로더 ===== */
-
-// 프리로더 전체 래퍼
 .intro-preloader-wrap {
   position: relative;
   overflow: hidden;
 }
 
-// 프리로더: 올리브 배경, 고정 전체화면
 .intro-preloader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background: $black-solid;
+  background: #000000;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -23,37 +20,36 @@
   overflow: hidden;
 }
 
-// 로고 텍스트: 좌측 하단 고정
 .intro-preloader__logo {
   position: fixed;
   bottom: 0;
   left: 3rem;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-size: 12vw;
   font-weight: 900;
-  color: $point_orange;
+  color: #ff5f00;
   letter-spacing: -0.09em;
   line-height: 1;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
 }
+
 /* 새로운 .intro-preloader__char-img 스타일 추가 */
 .intro-preloader__char-img {
   height: 370px;
-
   display: inline-block;
   margin: 0 8px; /* 이미지 간격 설정 (원하는 크기로 조정) */
-  &:nth-child(4) {
-    transform: translateX(-8px);
-  }
-  &:nth-child(5) {
-    transform: translateX(-8px);
-  }
-  &:nth-child(6) {
-    transform: translateX(-8px);
-  }
+}
+.intro-preloader__char-img:nth-child(4) {
+  transform: translateX(-8px);
+}
+.intro-preloader__char-img:nth-child(5) {
+  transform: translateX(-8px);
+}
+.intro-preloader__char-img:nth-child(6) {
+  transform: translateX(-8px);
 }
 
-// 한 글자씩 올라오는 애니메이션용 inline-block 처리
 .intro-preloader__char {
   display: inline-block;
 }
+/*# sourceMappingURL=Intro.css.map */
